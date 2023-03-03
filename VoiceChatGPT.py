@@ -13,7 +13,7 @@ messages = []
 system_msg = input("Start")
 messages.append({"role": "system", "content": system_msg})
 # Create a function to transcribe speech and call OpenAI API
-engine.setProperty('voice', 'portuguese-pt')
+engine.setProperty('voice', 'english-US')
 engine.say('What the fuck do you need now?')
 engine.runAndWait()
 def process_speech():
@@ -22,7 +22,7 @@ def process_speech():
         with sr.Microphone() as source:
             print("Speak now!")
             audio = r.listen(source)
-        message = r.recognize_google(audio, language='pt-PT')
+        message = r.recognize_google(audio, language='en-US')
         
         messages.append({"role": "user", "content": message})
         response =  openai.ChatCompletion.create(
@@ -33,7 +33,7 @@ def process_speech():
         messages.append({"role": "assistant", "content": reply})    
         print("\n" + reply + "\n")
         # Speak the response aloud
-        engine.setProperty('voice', 'portuguese-PT')
+        engine.setProperty('voice', 'english-US')
         engine.say(reply)
         engine.runAndWait()
 # Call the function to start listening for speech
